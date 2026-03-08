@@ -1,0 +1,95 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String       @id @default(cuid())
+  email        String       @unique
+  passwordHash String
+  name         String?
+  role         String       @default("user") // "user" or "admin"
+  plan         String       @default("free") // "free" or "premium"
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  brandings    Branding[]
+  leads        Lead[]
+  pages        Page[]
+  automations  Automation[]
+  forms        Form[]
+}
+
+model Branding {
+  id         String   @id @default(uuid())
+  userId     String   @unique
+  user       User     @relation(fields: [userId], references: [id])
+  logoUrl    String?
+  colors     String?  // JSON con {primary, secondary}
+  typography String?  // JSON con {"heading", "body"}
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Form {
+  id         String   @id @default(uuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name       String
+  fieldsJson String   // JSON array de config de campos (tipo, placeholder, required)
+  styleJson  String?  // JSON de config visual (buttonTexto, color, etc)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Lead {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  name      String
+  email     String
+  tags      String?  // Comma separated tags
+  source    String?  // Where did it come from
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Page {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  title       String
+  urlSlug     String   @unique
+  contentJson String   // JSON structure of the page
+  status      String   @default("draft") // draft or published
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Automation {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  name      String
+  trigger   String   // e.g., "form_submit"
+  status    String   @default("active") // active or inactive
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  actions   Action[]
+}
+
+model Action {
+  id           String     @id @default(cuid())
+  automationId String
+  automation   Automation @relation(fields: [automationId], references: [id])
+  type         String     // "email", "whatsapp", "tag"
+  config       String     // JSON with specific action config
+  orderIndex   Int        @default(0)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}

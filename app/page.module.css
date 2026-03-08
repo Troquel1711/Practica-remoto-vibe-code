@@ -1,0 +1,111 @@
+.main {
+  min-height: 100vh;
+  background-color: var(--color-white);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  letter-spacing: -1px;
+}
+
+.nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.loginBtn {
+  color: var(--color-text-main);
+  font-weight: 500;
+}
+
+.registerBtn, .primaryBtn {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 0.5rem 1.5rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.registerBtn:hover, .primaryBtn:hover {
+  background-color: var(--color-primary-hover);
+  color: var(--color-white);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.hero {
+  padding: 6rem 0;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  color: var(--color-bg-dark);
+  margin-bottom: 1.5rem;
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.primaryBtn {
+  padding: 1rem 2.5rem;
+  font-size: 1.125rem;
+}
+
+.contactSection {
+  padding: 6rem 0;
+  max-width: 800px;
+  margin: 0 auto;
+  border-top: 1px solid var(--color-border);
+}
+
+.contactHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.contactHeader h2 {
+  font-size: 2.5rem;
+  font-family: var(--font-heading);
+  color: var(--color-bg-dark);
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+}
+
+.contactHeader p {
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+}
+
+.formContainer {
+  margin: 0 auto;
+  max-width: 650px;
+}

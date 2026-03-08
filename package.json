@@ -1,0 +1,35 @@
+{
+  "name": "launchify",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "push": "prisma db push",
+    "gen": "prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.13.0",
+    "bcryptjs": "^2.4.3",
+    "jose": "^5.2.4",
+    "lucide-react": "^0.378.0",
+    "next": "^16.1.6",
+    "react": "^18",
+    "react-dom": "^18",
+    "uuid": "^9.0.1",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/uuid": "^9.0.8",
+    "eslint": "^8",
+    "eslint-config-next": "^16.1.6",
+    "prisma": "^5.13.0",
+    "typescript": "^5"
+  }
+}
